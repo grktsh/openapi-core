@@ -155,6 +155,12 @@ paths:
           $ref: "#/components/responses/ErrorResponse"
 components:
   schemas:
+    Utctime:
+      oneOf:
+        - type: string
+          enum: [always, now]
+        - type: string
+          format: date-time
     Address:
       type: object
       x-model: Address
@@ -189,6 +195,7 @@ components:
           type: integer
           format: int64
     PetCreate:
+      type: object
       x-model: PetCreate
       allOf:
         - $ref: "#/components/schemas/PetCreatePartOne"
@@ -271,6 +278,8 @@ components:
       required:
         - name
       properties:
+        created:
+          $ref: "#/components/schemas/Utctime"
         name:
           type: string
           format: custom
